@@ -1,0 +1,44 @@
+SELECT
+    Id AS contato_id,
+    CreatedDate,
+
+    Email,
+    Phone,
+    MobilePhone,
+
+    CASE
+        WHEN LastActivityDate IS NULL THEN pi__last_activity__c
+        WHEN pi__last_activity__c IS NULL THEN LastActivityDate
+
+        WHEN LastActivityDate >= pi__last_activity__c 
+            THEN LastActivityDate
+
+        ELSE pi__last_activity__c
+    END AS ultima_atividade,
+
+    DATEDIFF(
+        DAY,
+        CASE
+            WHEN LastActivityDate IS NULL THEN pi__last_activity__c
+            WHEN pi__last_activity__c IS NULL THEN LastActivityDate
+
+            WHEN LastActivityDate >= pi__last_activity__c 
+                THEN LastActivityDate
+
+            ELSE pi__last_activity__c
+        END,
+        GETDATE()
+    ) AS dias_sem_interacao,
+
+    pi__score__c,
+    pi__grade__c,
+    LeadSource,
+   
+
+    CASE 
+        WHEN HasOptedOutOfEmail = 1 OR IsEmailBounced = 1 THEN 0
+        ELSE 1
+    END AS Pode_Receber_Email__c
+
+FROM Contact_Salesforce
+WHERE IsDeleted = 0

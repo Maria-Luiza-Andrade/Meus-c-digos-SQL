@@ -1,0 +1,18 @@
+SELECT
+    Id,
+
+    CreatedDate AS DataCriacao,
+
+    CAST(LeadSource AS VARCHAR(50)) AS Canal,
+
+    CAST(Segmento__c AS VARCHAR(50)) AS Segmento,
+
+    CAST(Equipamento__c AS VARCHAR(50)) AS Equipamento,
+
+    pi__score__c AS Score,
+
+    IsConverted AS Convertido,
+
+    CAST(Temperatura__c AS VARCHAR(50)) AS Temperatura
+
+FROM Lead_Salesforce

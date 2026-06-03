@@ -1,0 +1,72 @@
+SELECT
+A.AccountSource, 
+A.Id AS AccountIdAccount, 
+A.FirstName AS AccountFirstName, 
+A.LastName AS AccountLastName, 
+A.CreatedDate AS AccountCreatedDate, 
+A.Name AS AccountName, 
+A.Segmento_Oportunidade__pc, 
+A.PersonHasOptedOutOfEmail, 
+A.Phone AS AccountPhone, 
+A.BillingCity, 
+A.PersonMailingCity, 
+A.BillingStateCode, 
+A.PersonMailingStateCode, 
+A.Estado_IA__c, 
+A.FC_Email_PJ__c, 
+A.Data_da_ultima_convers_o__c,
+A.Oportunidade__pc,
+A.Oportunidade_PF__c,
+A.Tem_Oportunidade__c,
+A.Data_de_Cria_o_Ult_Oportunidade__c, 
+A.Data_de_ultimo_contato__c AS AccountData_de_ultimo_contato__c, 
+A.LastActivityDate AS AccountLastActivityDate, 
+A.Ultima_Altera_o__c AS AccountUltima_Altera_o__c,
+O.LastStageChangeDate,
+O.CreatedById AS OpportunityCreatedById, 
+O.CreatedDate AS OpportunityCreatedDate, 
+O.Id AS OpportunityId, 
+O.IsDeleted, 
+O.LastModifiedDate  AS OpportunityLastModifiedDate, 
+O.LastModifiedById AS OpportunityLastModifiedById, 
+O.LastReferencedDate AS OpportunityLastReferencedDate, 
+O.LastViewedDate, 
+O.Name AS OpportunityName, 
+O.Email__c, 
+O.Telefone__c, 
+O.Fase2__c, 
+O.LeadSource, 
+O.Type, 
+O.Temperatura__c AS OpportunityTemperatura__c, 
+O.FC_Motivo_de_Perda__c, 
+O.Amount, 
+O.Primeiro_nome__c AS OpportunityPrimeiro_nome__c,
+O.Sobrenome__c AS OpportunitySobrenome__c, 
+O.Origem_da_Oportunidade__c, 
+O.StageName, 
+O.AccountId,
+O.Segmento__c
+
+FROM
+    Opportunity_Salesforce AS O
+INNER JOIN 
+    Account_Salesforce AS A 
+    ON O.AccountId = A.Id
+    
+WHERE
+    A.PersonHasOptedOutOfEmail = 'False'
+AND 
+A.FC_Email_PJ__c IS NOT NULL
+
+AND
+O.StageName = 'Ganho'
+
+AND
+O.Type = 'Venda'
+
+
+AND
+O.LastStageChangeDate >= DATEADD(day, -90, GETDATE())
+
+AND 
+O.LastStageChangeDate <= DATEADD(day, -90, GETDATE())

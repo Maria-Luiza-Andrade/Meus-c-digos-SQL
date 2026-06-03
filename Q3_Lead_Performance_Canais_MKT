@@ -1,0 +1,44 @@
+SELECT
+    Id,
+
+    Id AS ContactKey,
+
+    Email,
+
+    Conta_Convertida__c,
+
+    ConvertedAccountId,
+
+    ConvertedContactId,
+
+    ConvertedOpportunityId,
+
+    LeadSource,
+
+    pi__utm_source__c AS UTM_Source,
+
+    pi__utm_medium__c AS UTM_Medium,
+
+    COUNT(Id) AS TotalLeads,
+
+    SUM(
+        CASE
+            WHEN IsConverted = 1 THEN 1
+            ELSE 0
+        END
+    ) AS LeadsConvertidos,
+
+    AVG(pi__score__c) AS ScoreMedio
+
+FROM Lead_Salesforce
+
+GROUP BY
+    Id,
+    Email,
+    Conta_Convertida__c,
+    ConvertedAccountId,
+    ConvertedContactId,
+    ConvertedOpportunityId,
+    LeadSource,
+    pi__utm_source__c,
+    pi__utm_medium__c

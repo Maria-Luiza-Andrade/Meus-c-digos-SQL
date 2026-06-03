@@ -1,0 +1,19 @@
+SELECT
+    Id AS contato_id,
+    Email,
+    LeadSource,
+    Nome_do_proprietario__c,
+    Ultima_modificacao_feita_por__c,
+    pi__score__c AS pi_score,
+    pi__last_activity__c AS UltimaAtividade,
+    CASE 
+        WHEN Oportunidade__c IS NOT NULL THEN 1
+        ELSE 0
+    END AS TemOportunidade,
+    CASE 
+        WHEN Oportunidade__c IS NOT NULL THEN 'Cliente/Oportunidade'
+        WHEN pi__score__c >= 100 THEN 'Lead Quente'
+        WHEN pi__score__c BETWEEN 50 AND 99 THEN 'Lead Morno'
+        ELSE 'Lead Frio'
+    END AS EstagioJornada
+FROM Contact_Salesforce

@@ -1,0 +1,21 @@
+SELECT
+    Id,
+
+    CAST(Equipamento__c AS VARCHAR(50)) AS Equipamento,
+
+    CAST(Segmento__c AS VARCHAR(50)) AS Segmento,
+
+    CAST(Regi_o__c AS VARCHAR(50)) AS Regiao,
+
+    COUNT(Id) AS TotalInteresses
+
+FROM Lead_Salesforce
+
+WHERE
+    Equipamento__c IS NOT NULL
+
+GROUP BY
+    Id,
+    CAST(Equipamento__c AS VARCHAR(50)),
+    CAST(Segmento__c AS VARCHAR(50)),
+    CAST(Regi_o__c AS VARCHAR(50))

@@ -1,0 +1,19 @@
+SELECT 
+    a.contato_id,
+    a.CreatedDate,
+    a.ultima_atividade,
+    a.dias_sem_interacao,
+    a.pi__score__c,
+    a.pi__grade__c,
+    a.LeadSource,
+    a.Pode_Receber_Email__c,
+    a.Email,
+    a.Phone,
+    a.MobilePhone,
+    
+    b.Interesse,
+    b.Interesse_negociação
+
+FROM Contact_360_Summary_versão_copia a
+INNER JOIN Contact_360_Summary_versão_copia b
+    ON a.contato_id = b.contato_id

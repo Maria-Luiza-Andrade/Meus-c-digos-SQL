@@ -1,0 +1,21 @@
+SELECT
+    Id,
+
+    CAST(Segmento__c AS VARCHAR(50)) AS Segmento,
+
+    CAST(Equipamento__c AS VARCHAR(50)) AS Equipamento,
+
+    AVG(
+        DATEDIFF(day, CreatedDate, ConvertedDate)
+    ) AS TempoConversao
+
+FROM Lead_Salesforce
+
+WHERE
+    IsConverted = 1
+    AND ConvertedDate IS NOT NULL
+
+GROUP BY
+    Id,
+    CAST(Segmento__c AS VARCHAR(50)),
+    CAST(Equipamento__c AS VARCHAR(50))

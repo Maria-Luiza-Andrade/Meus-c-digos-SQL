@@ -1,0 +1,13 @@
+SELECT
+    Id AS ContactId,
+
+    CAST(Name AS VARCHAR(50)) AS Nome,
+
+    CAST(Equipamento__c AS VARCHAR(50)) AS InteresseAtual,
+
+    CAST(Todos_interesses__c AS VARCHAR(50)) AS OutrosInteresses
+
+FROM Lead_Salesforce
+
+WHERE
+    Todos_interesses__c IS NOT NULL

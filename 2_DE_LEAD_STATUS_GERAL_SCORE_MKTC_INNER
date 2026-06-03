@@ -1,0 +1,72 @@
+SELECT DISTINCT
+    L.Email, 
+    L.HasOptedOutOfEmail, 
+    L.Id, 
+    L.Status, 
+    L.Phone,     
+    L.MobilePhone, 
+    L.Estado_IAL__c, 
+    L.Qual_equipamento_deseja_fechar__c, 
+    L.Interesse_de_negociacao__c, 
+    L.CreatedDate, 
+    L.Desqualificado__c, 
+    L.LeadSource, 
+    L.LastName, 
+    L.FirstName, 
+    L.Modelo_de_Interesse_Blip__c, 
+    L.Modelo_Equipamento_SMS__c, 
+    L.Modelo_Equipamento_Email__c, 
+    L.Categoria_Curso_Email__c, 
+    L.Categoria_Curso_SMS__c, 
+    L.Curso_Interesse1__c, 
+    L.Curso_de_Interesse__c, 
+    S.EmailEngagementPersona, 
+    S.EmailOpenLikelihood 
+FROM 
+    Lead_Salesforce AS L
+INNER JOIN 
+    Einstein_MC_Predictive_Scores AS S 
+    ON L.Email = S.email_address
+    
+WHERE
+        L.CreatedDate > '2023-01-01'
+        AND
+        L.CreatedDate < '2025-10-31'
+        
+        AND
+        (
+        L.LeadSource = 'Chat Take - Blip'	
+        OR
+        L.LeadSource = 'Loja virtual'	
+        OR
+        L.LeadSource = 'Meta'	
+        OR
+        L.LeadSource = 'Feiras'
+        OR
+        L.LeadSource = 'Landing Page'
+        OR
+        L.LeadSource = 'E-mail'
+        OR
+        L.LeadSource = 'SMS'
+        OR
+        L.LeadSource = 'Webinar'
+        OR
+        L.LeadSource = 'Take Blip - Reativação/Abandono'
+        )
+        
+        AND
+        (
+        L.Status = 'Fluxo e-mail MKT'
+        OR
+        L.Status = 'Não atende / Não responde'
+        OR
+        L.Status = 'Não trabalhado - blip'
+        OR
+        L.Status = 'Novo'
+        OR
+        L.Status = 'Abandono Blip'
+        OR
+        L.Status = 'Input fora do horário'
+        OR
+        L.Status = 'Qualificado'
+        )

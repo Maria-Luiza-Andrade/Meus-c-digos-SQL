@@ -1,0 +1,25 @@
+SELECT
+    Id AS SubscriberKey,
+    Email AS EmailAddress,
+    Phone AS MobileNumber,
+    FirstName,
+    LastName,
+    LeadSource,
+    Status AS LeadStatus,
+    CreatedDate AS DataCriacao,
+    HasOptedOutOfFax=0,
+    Nao_receber_contato_por_SMS__c= 0,
+    Nao_receber_contato_por_Email__c= 0,
+
+    DATEDIFF(day, CreatedDate, GETDATE()) AS DiasSemResposta
+    
+FROM Lead_Salesforce
+
+WHERE
+    Id IS NOT NULL
+    AND Email IS NOT NULL
+    AND Status IS NOT NULL
+    AND IsDeleted = 0
+    AND IsConverted = 0
+    
+    AND Email NOT LIKE '%@cpetecnologia.com.br%'

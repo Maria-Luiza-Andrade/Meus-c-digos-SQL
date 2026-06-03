@@ -1,0 +1,12 @@
+SELECT
+    a.Id,
+    a.Email,
+    a.Phone,
+    a.MobilePhone,
+    b.Estado,
+    b.Cidade,
+    b.TemOportunidade,
+    b.ContactId
+FROM Contact_Salesforce a
+INNER JOIN Contact_Analise_Geografica_versao_original b
+    ON a.Id = b.ContactId

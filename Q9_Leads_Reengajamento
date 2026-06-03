@@ -1,0 +1,16 @@
+SELECT
+    Id AS ContactId,
+
+    Email,
+
+    CAST(Name AS VARCHAR(50)) AS Nome,
+
+    CAST(Lead_Recorrente__c AS VARCHAR(50)) AS LeadRecorrente,
+
+    Tem_conta_ativa_recorrente_reativado__c AS Reativado
+
+FROM Lead_Salesforce
+
+WHERE
+    Lead_Recorrente__c IS NOT NULL
+    OR Tem_conta_ativa_recorrente_reativado__c = 1

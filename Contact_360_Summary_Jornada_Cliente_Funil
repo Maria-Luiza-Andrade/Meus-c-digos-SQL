@@ -1,0 +1,20 @@
+SELECT
+   a.contato_id, 
+   a.CreatedDate, 
+   a.ultima_atividade, 
+   a.dias_sem_interacao, 
+   a.pi__score__c, 
+   a.pi__grade__c, 
+   a.LeadSource, 
+   a.Pode_Receber_Email__c, 
+   a.Email, 
+   a.Phone, 
+   b.UltimaAtividade, 
+   b.TemOportunidade, 
+   b.EstagioJornada,
+   b.Ultima_modificacao_feita_por__c,
+   b.Nome_do_proprietario__c 
+
+FROM Contact_360_Summary_versão_original a
+INNER JOIN Contact_Jornada_Cliente_Funil_versão_original b
+    ON a.contato_id = b.contato_id

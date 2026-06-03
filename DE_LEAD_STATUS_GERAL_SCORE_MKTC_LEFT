@@ -1,0 +1,110 @@
+SELECT DISTINCT
+    L.Conta_Convertida__c,
+    L.ConvertedAccountId,
+    L.ConvertedContactId, 
+    L.ConvertedOpportunityId,
+    L.CreatedById, 
+    L.Email, 
+    L.HasOptedOutOfEmail, 
+    L.Id, 
+    L.IndividualId, 
+    L.LastModifiedById, 
+    L.MasterRecordId, 
+    L.OwnerId, 
+    L.RecordTypeId,
+    L.Status,
+    L.rea_Predominante__c, 
+    L.Cadastro_Fiscal__c, 
+    L.Capital_Social__c, 
+    L.Cargo__c, 
+    L.MobilePhone, 
+    L.Condicao_do_Lead__c, 
+    L.IsConverted, 
+    L.ConvertedDate, 
+    L.EmailBouncedDate, 
+    LastModifiedDate, 
+    L.CreatedDate, 
+    L.Data_do_Ultimo_contato__c, 
+    L.Equipamento__c, 
+    L.Estado_IAL__c, 
+    L.Lead_Recorrente__c, 
+    L.LeadSource, 
+    L.FirstName, 
+    L.Proposta_enviada__c, 
+    L.Segmentacao__c, 
+    L.Segmento__c, 
+    L.Segmento_do_Equipamento__c, 
+    L.Tarefa_Futura_Agendada__c, 
+    L.Qual_equipamento_deseja_fechar__c, 
+    L.Todos_interesses__c, 
+    L.Dataultimo_contato__c, 
+    L.Data_ultimo_Contato__c, 
+    L.Interesse_de_negociacao__c, 
+    L.Modelo_de_Interesse_Blip__c, 
+    L.Curso_de_Interesse__c, 
+    L.Curso_Interesse1__c, 
+    L.Tipo_de_Curso__c, 
+    L.Tipo_Curso1__c, 
+    L.Temperatura__c, 
+    L.Tipo_Curso_Email__c, 
+    L.Tipo_Curso_SMS__c, 
+    L.Tipo_Solicitacao_Email__c, 
+    L.Tipo_Solicitacao_SMS__c, 
+    L.Categoria_Curso_Email__c, 
+    L.Categoria_Curso_SMS__c, 
+    L.Modelo_Equipamento_Email__c, 
+    L.Linha_Equipamento_Email__c, 
+    L.Modelo_Equipamento_SMS__c, 
+    L.Linha_Equipamento_SMS__c, 
+    L.Desqualificado__c, 
+    L.Solicitou_proposta__c, 
+    L.Nao_receber_contato_por_Email__c, 
+    L.Nao_receber_contato_por_Ligacao__c, 
+    L.Nao_receber_contato_por_SMS__c, 
+    L.Nao_receber_contato_por_Whatsapp__c, 
+    L.LastActivityDate, 
+    L.Mudanca_de_Status_SDR__c, 
+    L.LastName 
+    
+FROM 
+    Lead_Salesforce AS L
+LEFT JOIN 
+    Einstein_MC_Predictive_Scores AS S 
+    ON L.Email = S.email_address
+    
+WHERE
+        S.email_address IS NULL
+        AND
+        L.CreatedDate > '2023-01-01'
+        AND
+        L.CreatedDate < '2025-10-31'
+        
+        AND
+        (
+        L.LeadSource = 'Chat Take - Blip'	
+        OR
+        L.LeadSource = 'Loja Virtual'	
+        OR
+        L.LeadSource = 'Meta'	
+        OR
+        L.LeadSource = 'Feiras'
+        OR
+        L.LeadSource = 'Landing Page'
+        )
+        
+        AND
+        (
+         L.Status = 'Fluxo e-mail MKT'
+        OR
+        L.Status = 'Não atende / Não responde'
+        OR
+        L.Status = 'Não trabalhado - blip'
+        OR
+        L.Status = 'Novo'
+        OR
+        L.Status = 'Abandono Blip'
+        OR
+        L.Status = 'Input fora do horário'
+        OR
+        L.Status = 'Qualificado'
+        )

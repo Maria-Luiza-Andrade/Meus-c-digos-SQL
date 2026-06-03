@@ -1,0 +1,8 @@
+SELECT
+    Contato__pc, CreatedById, CreatedDate, Data_da_ultima_convers_o__c, Data_da_Verificacao__c, Data_de_Abertura_da_EmpresaNw__c, Data_de_ltima_Visita__c, Data_de_ultimo_contato__c, Descricao_do_motivo_da_inativacao__c, FirstName, Id, LastModifiedById, LicenciadaForm__pc, Licenciado__c, Loca_o_com_Op_o_de_Compra__pc, Loca_o_com_Op_o_de_Compra_Conta__c, Localizacao_e_ContatoNw__c, ltimo_Lead_Convertido__c, MasterRecordId, Observa_o__pc, Oportunidade__pc, Oportunidade_PF__c, Opp_Fechada_CPE_Expirence__c, OwnerId, Padrinho__c, Parceiro_Licenciado__c, Parceiro_Licenciado_c__pc, ParentId, Pendencia_Finaceira__c, PersonContactId, PersonIndividualId, PersonLeadSource, PersonOtherPhone, pi__conversion_object_name__pc, Prioridade_de_atendimento_Locacao__c, Prospeca_o_Webinar__c, Prospeccao_Newoay__c, RecordTypeId, SBQQ__DefaultOpportunity__c, Segmento_Oportunidade__pc, Type, Tipo_do_cliente__c, Todos_interesses__pc, Ultima_Altera_o__c, LastActivityDate, LastReferencedDate, Ultimamodificacao_feita_por__c, Ultima_modificacao_feita_por__pc, FC_Valor_de_compra_ltimos_12_meses__c, Verificado__c, Interesse_do_Cliente__pc, PersonMailingStreet, PersonMailingGeocodeAccuracy, PersonEmailBouncedReason, FC_Motivo_do_bloqueio__c, Nao_tem_conversao__c, Name, Nome_do_proprietario__pc, Nome_do_proprietarioac__c, FC_Observacoes__c, Porte_da_empresa__c, Reativado_por__c, PersonHasOptedOutOfEmail, RegiaoNw__c, Relevancia_de_telefonesNw__c, Industry, Send_Anniversary_Email__pc, Estado_IA__c, IsDeleted, Inativo__c, Inativo_Devolvido_Paula__c, Inativo_Mitra_Sankhya__c, FC_Email_PJ__c, Phone 
+
+FROM
+    Account_Salesforce AS ContaSales
+    
+WHERE
+    ContaSales.Inativo__c = 'TRUE'

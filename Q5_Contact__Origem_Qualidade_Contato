@@ -1,0 +1,26 @@
+SELECT
+    Id,
+    Email,
+    Phone,
+    LeadSource,
+    pi__utm_source__c AS UTM_Source,
+    pi__utm_medium__c AS UTM_Medium,
+    
+    COUNT(*) AS TotalContatos,
+    AVG(pi__score__c) AS ScoreMedio,
+    
+    SUM(CASE 
+        WHEN Oportunidade__c IS NOT NULL 
+             AND Oportunidade__c <> '' 
+        THEN 1 ELSE 0 
+    END) AS ContatosComOportunidade
+
+FROM Contact_Salesforce
+
+GROUP BY 
+    Id,
+    Email,
+    Phone,
+    LeadSource,
+    pi__utm_source__c,
+    pi__utm_medium__c

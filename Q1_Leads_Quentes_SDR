@@ -1,0 +1,40 @@
+SELECT
+    Id AS ContactId,
+    ConvertedContactId,
+    ConvertedAccountId,
+    ConvertedOpportunityId,
+    Conta_Convertida__c,
+
+    Email,
+    Phone,
+
+    FirstName,
+    LastName,
+
+    Company AS Empresa,
+    LeadSource,
+
+    Temperatura__c AS Temperatura,
+
+    pi__score__c AS pi_score,
+
+    CAST(Pontuacao__c AS VARCHAR(255)) AS Pontuacao,
+
+    pi__last_activity__c AS UltimaAtividade,
+
+    Interesse_de_negociacao__c AS InteresseNegociacao,
+
+    Quer_Or_amento_proposta_demonstra_o__c AS QuerProposta,
+
+    Pretende_fechar_neg_cio_em_at_2_meses__c AS PretendeFechar2Meses,
+
+    CreatedDate AS DataCriacao
+
+FROM Lead_Salesforce
+
+WHERE
+    IsConverted = 0
+    AND (
+        pi__score__c >= 100
+        OR Pontuacao__c >= 80
+    )

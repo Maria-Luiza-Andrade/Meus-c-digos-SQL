@@ -1,0 +1,11 @@
+SELECT
+    FC_Email_PJ__c,
+    COUNT(AccountId) AS Quantidade_Opps,
+    SUM(ISNULL(Amount, 0)) AS LTV,
+    MAX(Data_da_ultima_convers_o__c) AS Data_Ultima_Conversao
+FROM
+    [DE_CONTA_OPP_2025]
+WHERE
+    StageName = 'Ganho'
+GROUP BY 
+    FC_Email_PJ__c

@@ -1,0 +1,31 @@
+SELECT
+    Id AS ContactId,
+
+    Email,
+
+    FirstName AS Nome,
+
+    LastName AS Sobrenome,
+
+    Temperatura__c AS Temperatura,
+
+    LastActivityDate AS UltimaAtividade,
+
+    DATEDIFF(day, LastActivityDate, GETDATE()) AS DiasSemContato,
+
+    Tarefa_Futura_Agendada__c AS TarefaFutura,
+
+    Conta_Convertida__c,
+
+    ConvertedAccountId,
+
+    ConvertedContactId,
+
+    ConvertedOpportunityId
+
+FROM Lead_Salesforce
+
+WHERE
+    IsConverted = 0
+    AND LastActivityDate <= DATEADD(day, -15, GETDATE())
+    AND Tarefa_Futura_Agendada__c = 0

@@ -1,0 +1,16 @@
+SELECT
+    Id AS ContactId,
+
+    Email,
+
+    pi__pardot_hard_bounced__c AS Bounce,
+
+    CAST(EmailBouncedReason AS VARCHAR(50)) AS BounceReason,
+
+    HasOptedOutOfEmail AS OptOut
+
+FROM Lead_Salesforce
+
+WHERE
+    pi__pardot_hard_bounced__c = 1
+    OR HasOptedOutOfEmail = 1

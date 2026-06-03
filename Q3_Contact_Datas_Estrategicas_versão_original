@@ -1,0 +1,14 @@
+SELECT
+    Id AS contato_id,
+    Email,
+    Birthdate,
+    Anniversary_Date__c AS Anniversary_Date,
+    pi__conversion_date__c AS ConversionDate,
+    CASE 
+        WHEN Birthdate IS NOT NULL 
+             AND DATEPART(MONTH, Birthdate) = DATEPART(MONTH, GETDATE())
+        THEN 'Aniversariante do Mês'
+        ELSE 'Outro'
+    END AS FlagAniversario
+FROM Contact_Salesforce
+WHERE Birthdate IS NOT NULL

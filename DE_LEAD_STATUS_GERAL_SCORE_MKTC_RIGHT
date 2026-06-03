@@ -1,0 +1,16 @@
+SELECT DISTINCT
+    L.Email, 
+    L.Id, 
+    L.Phone, 
+    L.LastName, 
+    L.FirstName, 
+    S.EmailEngagementPersona, 
+    S.EmailOpenLikelihood 
+FROM 
+    Einstein_MC_Predictive_Scores AS S
+INNER JOIN 
+    DE_CLUSTER_SCORE_MKTC AS L
+    ON S.email_address = L.Email
+    
+WHERE
+        S.email_address IS NULL

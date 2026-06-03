@@ -1,0 +1,34 @@
+SELECT DISTINCT
+    L.Email, 
+    L.HasOptedOutOfEmail, 
+    L.Id, 
+    L.Status, 
+    L.Phone, 
+    L.Estado_IAL__c, 
+    L.Qual_equipamento_deseja_fechar__c, 
+    L.Interesse_de_negociacao__c, 
+    L.CreatedDate, 
+    L.Desqualificado__c, 
+    L.LeadSource, 
+    L.LastName, 
+    L.FirstName, 
+    L.Modelo_de_Interesse_Blip__c, 
+    L.Modelo_Equipamento_SMS__c, 
+    L.Modelo_Equipamento_Email__c, 
+    L.Categoria_Curso_Email__c, 
+    L.Categoria_Curso_SMS__c, 
+    L.Curso_Interesse1__c, 
+    L.Curso_de_Interesse__c, 
+    S.EmailEngagementPersona, 
+    S.EmailOpenLikelihood 
+FROM 
+    Lead_Salesforce AS L
+INNER JOIN 
+    Einstein_MC_Predictive_Scores AS S 
+    ON L.Email = S.email_address
+    
+WHERE
+ L.CreatedDate > '2025-01-01'
+AND
+ L.CreatedDate < '2025-10-31'
+ 

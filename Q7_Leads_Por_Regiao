@@ -1,0 +1,25 @@
+SELECT
+    Id,
+
+    CAST(State AS VARCHAR(50)) AS Estado,
+
+    CAST(Cidade__c AS VARCHAR(50)) AS Cidade,
+
+    CAST(Segmento__c AS VARCHAR(50)) AS Segmento,
+
+    COUNT(Id) AS TotalLeads,
+
+    SUM(
+        CASE
+            WHEN IsConverted = 1 THEN 1
+            ELSE 0
+        END
+    ) AS LeadsConvertidos
+
+FROM Lead_Salesforce
+
+GROUP BY
+    Id,
+    CAST(State AS VARCHAR(50)),
+    CAST(Cidade__c AS VARCHAR(50)),
+    CAST(Segmento__c AS VARCHAR(50))
